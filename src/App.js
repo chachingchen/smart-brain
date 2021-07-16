@@ -95,6 +95,7 @@ class App extends Component {
   render(){
     
     const {imageUrl,box,route, isSignedIn } = this.state;
+    const {name, entries} = this.state.user;
     return (
       <div className="App">
       <Particles className='particles' params={particlesOption} />
@@ -102,13 +103,13 @@ class App extends Component {
         { route === 'home' 
             ? <div>
                 <Logo />
-                <Rank />
+                <Rank name={name} entries={entries}/>
                 <ImageLinkForm onInputChange={this.onInputChange} onButtonSubmit={this.onButtonSubmit}/>
                 <FaceRecognition box={box} imageUrl={imageUrl}/>
               </div> 
             : (
                 route === 'signin' 
-                ? <Signin onRouteChange={this.onRouteChange}/>
+                ? <Signin loadUser={this.loadUser} onRouteChange={this.onRouteChange}/>
                 : <Register loadUser={this.loadUser} onRouteChange={this.onRouteChange}/>
             )
              
