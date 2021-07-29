@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import Particles from 'react-particles-js';
-import Clarifai from'clarifai';
 import Navigation from './components/Navigation/Navigation';
 import Logo from './components/Logo/Logo';
 import ImageLinkForm from './components/ImageLinkForm/ImageLinkForm';
@@ -10,9 +9,6 @@ import Signin from './components/Signin/Signin';
 import Register from './components/Register/Register';
 import './App.css';
 
-const app = new Clarifai.App({
- apiKey: '7944ea3a4d1744539ca18a6f69c49630'
-});
 
 const particlesOption = {
   particles: {
@@ -81,7 +77,14 @@ class App extends Component {
   
   onButtonSubmit = ()=> {
     this.setState({imageUrl: this.state.input});
-    app.models.predict('e466caa0619f444ab97497640cefc4dc', this.state.input)
+    fetch('http://localhost:3001/imageurl',{
+        method: 'post',
+        headers: {'content-type' : 'application/json'},
+        body: JSON.stringify({
+        input: this.state.input
+      })
+    })
+    .then(response => response.json())
     .then(response => {
       if (response) {
         fetch('http://localhost:3001/image',{
