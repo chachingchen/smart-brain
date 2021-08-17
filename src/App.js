@@ -86,7 +86,8 @@ class App extends Component {
     })
     .then(response => response.json())
     .then(response => {
-      if (response) {
+      if (typeof response === 'object'){
+        if (response) {
         fetch('https://damp-retreat-36499.herokuapp.com/image',{
           method: 'put',
           headers: {'content-type' : 'application/json'},
@@ -102,6 +103,8 @@ class App extends Component {
 
       }
       this.displayFaceBox(this.calculateFaceLocation(response))
+      }
+      
     }) 
     .catch(err => console.log(err));
   }
