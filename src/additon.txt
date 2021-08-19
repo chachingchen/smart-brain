@@ -1,0 +1,8 @@
+show user rank:
+1.add nav link in home route
+2.new component with table show ranking
+3. SQL: select entry from users order by entry;
+-----------------------------------------------
+upload img 
+1.add 'upload' btn beside 'Detect' btn
+2.img display in FaceRecognition components
