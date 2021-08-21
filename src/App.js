@@ -28,6 +28,7 @@ const initialState = {
       box: {},
       route: 'signin',
       isSignedIn: false,
+      selectedFile: null,
       user: {
         id: '',
         name: '',
@@ -74,16 +75,33 @@ class App extends Component {
   onInputChange = (event)=> {
     this.setState({input: event.target.value});
   }
+
+  onFileChange = (event)=> {
+    this.setState({selectedFile: event.target.files[0]});
+  }
   
   onButtonSubmit = ()=> {
-    this.setState({imageUrl: this.state.input});
-    fetch('https://damp-retreat-36499.herokuapp.com/imageurl',{
+    if (onInputChange) {
+      this.setState({imageUrl: this.state.input});
+      fetch('https://damp-retreat-36499.herokuapp.com/imageurl',{
         method: 'post',
         headers: {'content-type' : 'application/json'},
         body: JSON.stringify({
         input: this.state.input
       })
     })
+    }else {
+      this.setState({imageUrl: this.setState.selectedFile});
+      fetch('https://damp-retreat-36499.herokuapp.com/imageurl',{
+        method: 'post',
+        headers: {'content-type' : 'application/json'},
+        body: JSON.stringify({
+        input: this.state.selectedFile
+      })
+    })
+    }
+    
+    
     .then(response => response.json())
     .then(response => {
       if (typeof response === 'object'){
@@ -130,7 +148,7 @@ class App extends Component {
             ? <div>
                 <Logo />
                 <Rank name={name} entries={entries}/>
-                <ImageLinkForm onInputChange={this.onInputChange} onButtonSubmit={this.onButtonSubmit}/>
+                <ImageLinkForm onInputChange={this.onInputChange} onButtonSubmit={this.onButtonSubmit} onFileChange={this.onFileChange}/>
                 <FaceRecognition box={box} imageUrl={imageUrl}/>
               </div> 
             : (
