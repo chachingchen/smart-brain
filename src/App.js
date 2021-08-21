@@ -85,12 +85,14 @@ class App extends Component {
   
   onButtonSubmit = ()=> {
     
-      this.setState({imageUrl: this.state.selectedFile});
+     this.setState({imageUrl: this.state.input});
+     console.log('imageUrl: ',this.state.imageUrl);
+     console.log('input: ',this.state.input);
       fetch('https://damp-retreat-36499.herokuapp.com/imageurl',{
         method: 'post',
         headers: {'content-type' : 'application/json'},
         body: JSON.stringify({
-        input: this.state.selectedFile
+        input: this.state.input
       })
     })
     .then(response => response.json())
