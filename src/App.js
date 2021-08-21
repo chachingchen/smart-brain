@@ -78,13 +78,14 @@ class App extends Component {
 
   onFileChange = (event)=> {
     let img = event.target.files[0];
+    console.log('img:  ',img);
     this.setState({selectedFile: URL.createObjectURL(img)});
+    console.log('selectedFile:  ',this.state.selectedFile);
   }
   
   onButtonSubmit = ()=> {
     
       this.setState({imageUrl: this.state.selectedFile});
-      console.log('imageUrl:  ',this.state.selectedFile);
       fetch('https://damp-retreat-36499.herokuapp.com/imageurl',{
         method: 'post',
         headers: {'content-type' : 'application/json'},
