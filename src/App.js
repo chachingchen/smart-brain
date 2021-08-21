@@ -28,7 +28,7 @@ const initialState = {
       box: {},
       route: 'signin',
       isSignedIn: false,
-      selectedFile: null,
+      selectedFile: {},
       user: {
         id: '',
         name: '',
