@@ -9,9 +9,6 @@
 	background-size: 40px 60px;
 	
 }
-.center {
-	display: block;
-}
 
 input[type=file]::-webkit-file-upload-button {
 	border: 2px solid #6c5ce7;
@@ -19,5 +16,4 @@ input[type=file]::-webkit-file-upload-button {
 	border-radius: .2em;
 	background-color: #a29bfe;
 	transition: 1s;
-	display: block;
 }
